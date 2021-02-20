@@ -29,9 +29,6 @@ export const AlbumWrapper = styled.div`
     width: ${(props) => props.size};
     .name {
       color: #000;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
     }
 
     .artist {

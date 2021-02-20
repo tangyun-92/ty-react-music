@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 23:11:07 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 23:16:56
+ * @Last Modified time: 2021-02-20 23:27:59
  * 专辑封面组件
  */
 import React, { memo } from 'react'
@@ -22,8 +22,8 @@ export default memo(function AlbumCover(props) {
         </a>
       </div>
       <div className="album-info">
-        <div className="name">{info.name}</div>
-        <div className="artist">{info.artist.name}</div>
+        <div className="name text-nowrap">{info.name}</div>
+        <div className="artist text-nowrap">{info.artist.name}</div>
       </div>
     </AlbumWrapper>
   )
