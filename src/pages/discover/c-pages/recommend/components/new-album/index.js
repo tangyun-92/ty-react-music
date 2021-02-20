@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:29:17
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 23:06:54
+ * @Last Modified time: 2021-02-20 23:18:51
  * 推荐-新碟上架组件
  */
 import React, { memo, useEffect, useRef } from 'react'
@@ -11,6 +11,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { Carousel } from 'antd'
 import { NewAlbumWrapper } from './style'
 import TYThemeHeaderRecommend from '@/components/ThemeHeaderRecommend'
+import AlbumCover from '@/components/AlbumCover'
 import { getNewAlbum } from './../../store/actionCreators'
 
 export default memo(function TYNewAlbum() {
@@ -45,7 +46,7 @@ export default memo(function TYNewAlbum() {
               return (
                 <div key={item} className="page">
                   {newAlbums.slice(item * 5, (item + 1) * 5).map((itemX) => {
-                    return <div key={itemX.id}>{itemX.name}</div>
+                    return <AlbumCover key={itemX.id} info={itemX} />
                   })}
                 </div>
               )
@@ -57,10 +58,6 @@ export default memo(function TYNewAlbum() {
           onClick={(e) => pageRef.current.next()}
         ></div>
       </div>
-
-      {newAlbums.map((item, index) => {
-        return <div>{item.name}</div>
-      })}
     </NewAlbumWrapper>
   )
 })
