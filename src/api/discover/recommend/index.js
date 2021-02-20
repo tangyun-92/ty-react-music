@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 15:49:29 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 16:04:50
+ * @Last Modified time: 2021-02-20 22:24:39
  * 发现音乐-推荐
  */
 import request from '@/services/request.js'
@@ -18,10 +18,24 @@ export function getTopBanners() {
 
 /**
  * 获取热门推荐列表
+ * @param {*} limit 分页
  */
 export function getHotRecommend(limit) {
   return request({
     url: '/personalized',
+    params: {
+      limit
+    }
+  })
+}
+
+/**
+ * 获取新碟上架列表
+ * @param {*} limit 分页
+ */
+export function getNewAlbums(limit) {
+  return request({
+    url: '/top/album',
     params: {
       limit
     }

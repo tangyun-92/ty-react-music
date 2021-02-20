@@ -1,6 +1,10 @@
 import * as actionTypes from './constants'
 
-import { getTopBanners, getHotRecommend } from '@/api/discover/recommend'
+import {
+  getTopBanners,
+  getHotRecommend,
+  getNewAlbums,
+} from '@/api/discover/recommend'
 
 const changeTopBannerAction = (res) => ({
   type: actionTypes.CHANGE_TOP_BANNERS,
@@ -10,6 +14,11 @@ const changeTopBannerAction = (res) => ({
 const changeRecommendAction = (res) => ({
   type: actionTypes.CHANGE_HOT_RECOMMEND,
   hotRecommendList: res.result,
+})
+
+const changeNewAlbumAction = (res) => ({
+  type: actionTypes.CHANGE_NEW_ALBUMS,
+  newAlbums: res.albums
 })
 
 export const getTopBanner = () => {
@@ -24,6 +33,14 @@ export const getRecommend = (limit) => {
   return (dispatch) => {
     getHotRecommend(limit).then((res) => {
       dispatch(changeRecommendAction(res))
+    })
+  }
+}
+
+export const getNewAlbum = (limit) => {
+  return (dispatch) => {
+    getNewAlbums(limit).then(res => {
+      dispatch(changeNewAlbumAction(res))
     })
   }
 }

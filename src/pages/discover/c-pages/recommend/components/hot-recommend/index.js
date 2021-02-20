@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:02:37
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 21:40:35
+ * @Last Modified time: 2021-02-20 22:40:30
  * 推荐-热门推荐组件
  */
 import React, { memo, useEffect } from 'react'
@@ -15,10 +15,12 @@ import { getRecommend } from './../../store/actionCreators'
 
 export default memo(function TYHotRecommend() {
   // state
-  const { hotRecommendList } = useSelector((state) => ({
-    hotRecommendList: state.getIn(['recommend', 'hotRecommendList']),
-    shallowEqual,
-  }))
+  const { hotRecommendList } = useSelector(
+    (state) => ({
+      hotRecommendList: state.getIn(['recommend', 'hotRecommendList']),
+    }),
+    shallowEqual
+  )
 
   // redux hooks
   const dispatch = useDispatch()
