@@ -1,8 +1,15 @@
+/*
+ * @Author: 唐云 
+ * @Date: 2021-02-20 15:02:12 
+ * @Last Modified by: 唐云
+ * @Last Modified time: 2021-02-20 15:53:28
+ * 推荐-banner组件
+ */
 import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
 import { BannerWrapper, BannerLeft, BannerRight, BannerControl } from './style'
-import { getTopBannerAction } from './../../store/actionCreators'
+import { getTopBanner } from './../../store/actionCreators'
 import { Carousel } from 'antd'
 
 export default memo(function TYTopBanner() {
@@ -23,7 +30,7 @@ export default memo(function TYTopBanner() {
   const bannerRef = useRef()
 
   useEffect(() => {
-    dispatch(getTopBannerAction())
+    dispatch(getTopBanner())
   }, [dispatch])
 
   const bannerChange = useCallback((from, to) => {
