@@ -56,7 +56,11 @@ export const PlayInfo = styled.div`
   .image {
     width: 34px;
     height: 34px;
-    border-radius: 5px;
+    border-radius: 3px;
+
+    img {
+      border-radius: 3px;
+    }
   }
 
   .info {
