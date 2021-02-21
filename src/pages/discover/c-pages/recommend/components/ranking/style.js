@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 export const RankingWrapper = styled.div`
-  .recommend-list {
+  .tops {
+    margin: 30px 0;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    background-image: url(${require('@/assets/img/recommend-top-bg.png')});
+    height: 472px;
   }
 `

@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 15:49:29 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 22:24:39
+ * @Last Modified time: 2021-02-21 13:30:54
  * 发现音乐-推荐
  */
 import request from '@/services/request.js'
@@ -38,6 +38,19 @@ export function getNewAlbums(limit) {
     url: '/top/album',
     params: {
       limit
+    }
+  })
+}
+
+/**
+ * 获取榜单列表
+ * @param {*} idx id 
+ */
+export function getTopList(idx) {
+  return request({
+    url: '/top/list',
+    params: {
+      idx
     }
   })
 }
