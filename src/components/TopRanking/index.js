@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 13:49:45
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-21 14:10:01
+ * @Last Modified time: 2021-02-21 14:20:29
  * 榜单组件
  */
 import React, { memo } from 'react'
@@ -12,6 +12,7 @@ import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function TopRanking(props) {
   const { info } = props
+  const { tracks = [] } = info
 
   return (
     <TopRankingWrapper>
@@ -31,7 +32,7 @@ export default memo(function TopRanking(props) {
         </div>
       </div>
       <div className="list">
-        {info.tracks.slice(0, 10).map((item, index) => {
+        {tracks.slice(0, 10).map((item, index) => {
           return (
             <div key={item.id} className="list-item">
               <div className="rank">{index + 1}</div>
