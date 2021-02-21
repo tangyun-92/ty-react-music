@@ -2,16 +2,26 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-21 15:02:34
+ * @Last Modified time: 2021-02-21 15:32:20
  * 播放器组件
  */
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 
 import { Slider } from 'antd'
 
 import { PlayBarWrapper, Control, PlayInfo, Operator } from './style'
+import { getSongDetailAction } from './../store/actionCreators'
+import { useDispatch } from 'react-redux'
 
 export default memo(function AppPlayerBar() {
+  // redux hook
+  const dispatch = useDispatch()
+
+  // other hooks
+  useEffect(() => {
+    dispatch(getSongDetailAction(167876))
+  }, [dispatch])
+
   return (
     <PlayBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
