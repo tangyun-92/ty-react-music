@@ -12,3 +12,16 @@ export function getSongDetail(ids) {
     }
   })
 }
+
+/**
+ * 获取指定歌曲的歌词
+ * @param {*} id 歌曲id
+ */
+export function getLyric(id) {
+  return request({
+    url: '/lyric',
+    params: {
+      id
+    }
+  })
+}

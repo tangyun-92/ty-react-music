@@ -214,6 +214,7 @@ const defaultState = Map({
   currentSong: {}, // 当前播放的歌曲
   currentSongIndex: 0, // 当前播放歌曲的索引
   sequence: 0, // 0循环播放 1随机播放 2单曲循环
+  lyricList: [] // 歌词
 })
 
 function reducer(state = defaultState, action) {
@@ -226,6 +227,8 @@ function reducer(state = defaultState, action) {
       return state.set('currentSongIndex', action.currentSongIndex)
     case actionTypes.CHANGE_SEQUENCE:
       return state.set('sequence', action.sequence)
+    case actionTypes.CHANGE_LYRIC_LIST:
+      return state.set('lyricList', action.lyricList)
     default:
       return state
   }

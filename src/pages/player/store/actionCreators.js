@@ -1,6 +1,7 @@
-import { getSongDetail } from '@/api/player'
+import { getSongDetail, getLyric } from '@/api/player'
 import * as actionsTypes from './constants'
 import { getRandomNumber } from '@/utils/math-utils'
+import { parseLyric } from '@/utils/parse-lyric'
 
 const changeSongDetailAction = (currentSong) => ({
   type: actionsTypes.CHANGE_CURRENT_SONG,
@@ -17,12 +18,20 @@ const changeCurrentSongIndexAction = (index) => ({
   currentSongIndex: index,
 })
 
+const changeLyricListAction = (lyricList) => ({
+  type: actionsTypes.CHANGE_LYRIC_LIST,
+  lyricList,
+})
+
 export const changeSequenceAction = (sequence) => ({
   type: actionsTypes.CHANGE_SEQUENCE,
   sequence,
 })
 
-// 切歌
+/**
+ * 切歌
+ * @param {*} tag 0顺序播放 1随机播放 2单曲循环
+ */
 export const changeCurrentSong = (tag) => {
   return (dispatch, getState) => {
     const sequence = getState().getIn(['player', 'sequence'])
@@ -52,9 +61,16 @@ export const changeCurrentSong = (tag) => {
     const currentSong = playList[currentSongIndex]
     dispatch(changeCurrentSongIndexAction(currentSongIndex))
     dispatch(changeSongDetailAction(currentSong))
+
+    // 获取歌词
+    dispatch(getLyricAction(currentSong.id))
   }
 }
 
+/**
+ * 将歌曲添加到播放列表并且播放
+ * @param {*} ids 歌曲id
+ */
 export const getSongDetailAction = (ids) => {
   return (dispatch, getState) => {
     // 根据id查找playList中是否存在该歌曲
@@ -62,15 +78,18 @@ export const getSongDetailAction = (ids) => {
     const songIndex = playList.findIndex((song) => song.id === ids)
 
     // 判断是否找到歌曲
+    let song = null
     if (songIndex !== -1) {
       // 找到
       dispatch(changeCurrentSongIndexAction(songIndex))
-      const song = playList[songIndex]
+      song = playList[songIndex]
       dispatch(changeSongDetailAction(song))
+      // 请求歌曲的歌词
+      dispatch(getLyricAction(song.id))
     } else {
       // 没找到，请求歌曲数据
       getSongDetail(ids).then((res) => {
-        const song = res.songs && res.songs[0]
+        song = res.songs && res.songs[0]
         if (!song) return
         // 将请求到的歌曲放入播放列表
         const newPlayList = [...playList]
@@ -81,12 +100,17 @@ export const getSongDetailAction = (ids) => {
         dispatch(changeCurrentSongIndexAction(newPlayList.length - 1))
         // 更新正在播放的歌曲
         dispatch(changeSongDetailAction(song))
+        // 请求歌曲的歌词
+        dispatch(getLyricAction(song.id))
       })
     }
   }
 }
 
-// 将歌曲添加到播放列表
+/**
+ * 将歌曲添加到播放列表
+ * @param {*} ids 歌曲id
+ */
 export const getSongToPlayListAction = (ids) => {
   return (dispatch, getState) => {
     const playList = getState().getIn(['player', 'playList'])
@@ -101,5 +125,19 @@ export const getSongToPlayListAction = (ids) => {
         dispatch(changePlayListAction(newPlayList))
       })
     }
+  }
+}
+
+/**
+ * 获取歌词并解析
+ * @param {*} id 歌曲id
+ */
+export const getLyricAction = (id) => {
+  return (dispatch) => {
+    getLyric(id).then((res) => {
+      const lyric = res.lrc.lyric
+      const lyricList = parseLyric(lyric)
+      dispatch(changeLyricListAction(lyricList))
+    })
   }
 }

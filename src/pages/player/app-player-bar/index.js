@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-22 15:29:36
+ * @Last Modified time: 2021-02-22 15:48:08
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -45,7 +45,7 @@ export default memo(function AppPlayerBar() {
    */
   const audioRef = useRef()
   useEffect(() => {
-    dispatch(getSongDetailAction(167876))
+    dispatch(getSongDetailAction())
   }, [dispatch])
   useEffect(() => {
     // 歌曲路径
@@ -203,3 +203,4 @@ export default memo(function AppPlayerBar() {
     </PlayBarWrapper>
   )
 })
+
