@@ -2,9 +2,9 @@
  * @Author: 唐云
  * @Date: 2021-02-17 22:55:33
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-21 14:36:29
+ * @Last Modified time: 2021-02-22 21:39:56
  */
-import React, { memo } from 'react'
+import React, { memo, Suspense } from 'react'
 import { renderRoutes } from 'react-router-config'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -21,7 +21,9 @@ export default memo(function App() {
     <Provider store={store}>
       <HashRouter>
         <TYHeader></TYHeader>
-        {renderRoutes(routes)}
+        <Suspense fallback={<div>page loading</div>}>
+          {renderRoutes(routes)}
+        </Suspense>
         <TYFooter></TYFooter>
         <TYAppPlayBar></TYAppPlayBar>
       </HashRouter>
