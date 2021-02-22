@@ -7,6 +7,7 @@ import TYPlayList from '@/pages/discover/c-pages/play-list'
 import TYDjRadio from '@/pages/discover/c-pages/dj-radio'
 import TYArtist from '@/pages/discover/c-pages/artist'
 import TYAlbum from '@/pages/discover/c-pages/album'
+import TYPlayer from '@/pages/player'
 import TYFriend from '@/pages/friend'
 import TYMine from '@/pages/mine'
 
@@ -48,6 +49,10 @@ const routes = [
       {
         path: '/discover/album',
         component: TYAlbum,
+      },
+      {
+        path: '/discover/player',
+        component: TYPlayer,
       },
     ],
   },

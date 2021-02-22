@@ -2,16 +2,17 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-21 22:45:10
+ * @Last Modified time: 2021-02-22 14:27:47
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { Slider } from 'antd'
 
 import { PlayBarWrapper, Control, PlayInfo, Operator } from './style'
-import { getSongDetailAction } from './../store/actionCreators'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { getSongDetailAction, changeSequenceAction } from './../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
 export default memo(function AppPlayerBar() {
@@ -26,9 +27,10 @@ export default memo(function AppPlayerBar() {
   /**
    * redux hook
    */
-  const { currentSong } = useSelector(
+  const { currentSong, sequence } = useSelector(
     (state) => ({
       currentSong: state.getIn(['player', 'currentSong']),
+      sequence: state.getIn(['player', 'sequence']),
     }),
     shallowEqual
   )
@@ -98,6 +100,15 @@ export default memo(function AppPlayerBar() {
     [duration, isPlaying, playMusic]
   )
 
+  // 改变播放方式
+  const changeSequence = () => {
+    let currentSequence = sequence + 1
+    if (currentSequence > 2) {
+      currentSequence = 0
+    }
+    dispatch(changeSequenceAction(currentSequence))
+  }
+
   return (
     <PlayBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
@@ -111,9 +122,9 @@ export default memo(function AppPlayerBar() {
         </Control>
         <PlayInfo>
           <div className="image">
-            <a href="/todo">
+            <NavLink to="/discover/player">
               <img src={getSizeImage(picUrl, 34)} alt="" />
-            </a>
+            </NavLink>
           </div>
           <div className="info">
             <div className="song">
@@ -141,14 +152,14 @@ export default memo(function AppPlayerBar() {
             </div>
           </div>
         </PlayInfo>
-        <Operator>
+        <Operator sequence={sequence}>
           <div className="left">
             <button className="sprite_playbar btn favor"></button>
             <button className="sprite_playbar btn share"></button>
           </div>
           <div className="right sprite_playbar">
             <button className="sprite_playbar btn volume"></button>
-            <button className="sprite_playbar btn loop"></button>
+            <button className="sprite_playbar btn loop" onClick={e => changeSequence()}></button>
             <button className="sprite_playbar btn playlist"></button>
           </div>
         </Operator>
