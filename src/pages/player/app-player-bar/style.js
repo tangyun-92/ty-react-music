@@ -30,21 +30,36 @@ export const Control = styled.div`
   .next {
     width: 28px;
     height: 28px;
+    cursor: pointer;
   }
 
   .prev {
     background-position: 0 -130px;
+
+    &:hover {
+      background-position: -30px -130px;
+    }
   }
 
   .play {
     width: 36px;
     height: 36px;
     margin: 0 8px;
+    cursor: pointer;
     background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
+
+    &:hover {
+      background-position: -40px
+        ${(props) => (props.isPlaying ? '-165px' : '-204px')};
+    }
   }
 
   .next {
     background-position: -80px -130px;
+
+    &:hover {
+      background-position: -110px -130px;
+    }
   }
 `
 
@@ -90,12 +105,14 @@ export const PlayInfo = styled.div`
 
         .ant-slider-rail {
           height: 9px;
-          background: url(${require('@/assets/img/progress_bar.png').default}) right 0;
+          background: url(${require('@/assets/img/progress_bar.png').default})
+            right 0;
         }
 
         .ant-slider-track {
           height: 9px;
-          background: url(${require('@/assets/img/progress_bar.png').default}) left -66px;
+          background: url(${require('@/assets/img/progress_bar.png').default})
+            left -66px;
         }
 
         .ant-slider-handle {
