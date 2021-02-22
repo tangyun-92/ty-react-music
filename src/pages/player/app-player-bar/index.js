@@ -2,20 +2,21 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-22 15:48:08
+ * @Last Modified time: 2021-02-22 21:20:18
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Slider } from 'antd'
+import { Slider, message } from 'antd'
 
 import { PlayBarWrapper, Control, PlayInfo, Operator } from './style'
 import {
   getSongDetailAction,
   changeSequenceAction,
   changeCurrentSong,
+  changeCurrentLyricIndexAction,
 } from './../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
@@ -31,10 +32,12 @@ export default memo(function AppPlayerBar() {
   /**
    * redux hook
    */
-  const { currentSong, sequence } = useSelector(
+  const { currentSong, sequence, lyricList, currentLyricIndex } = useSelector(
     (state) => ({
-      currentSong: state.getIn(['player', 'currentSong']),
-      sequence: state.getIn(['player', 'sequence']),
+      currentSong: state.getIn(['player', 'currentSong']), // 播放器选中的歌曲
+      sequence: state.getIn(['player', 'sequence']), // 播放方式
+      lyricList: state.getIn(['player', 'lyricList']), // 歌词列表
+      currentLyricIndex: state.getIn(['player', 'currentLyricIndex']), // 播放歌曲选中的歌词
     }),
     shallowEqual
   )
@@ -53,6 +56,7 @@ export default memo(function AppPlayerBar() {
     // 监听歌曲改变执行播放
     audioRef.current.play().then(res => {
       setIsPlaying(true)
+      message.success('已开始播放')
     }).catch(err => {
       setIsPlaying(false)
     })
@@ -73,14 +77,40 @@ export default memo(function AppPlayerBar() {
     // 播放歌曲
     isPlaying ? audioRef.current.pause() : audioRef.current.play()
     setIsPlaying(!isPlaying)
+    if (!isPlaying) {
+      message.success('已开始播放')
+    } else {
+      message.warning('已停止播放')
+    }
   }, [isPlaying])
 
   // 监听播放时间
   const timeUpdate = (e) => {
+    const currentTime = e.target.currentTime
     // 乘以1000转为毫秒
     if (!isChanging) {
-      setCurrentTime(e.target.currentTime * 1000)
-      setProgress((currentTime / duration) * 100)
+      setCurrentTime(currentTime * 1000)
+      setProgress((currentTime * 1000 / duration) * 100)
+    }
+
+    // 获取当前的歌词
+    let i = 0
+    for (; i < lyricList.length; i++) {
+      let lyricItem = lyricList[i]
+      if (currentTime * 1000 < lyricItem.time) {
+        break
+      }
+    }
+    const finalIndex = i - 1
+    if (finalIndex !== currentLyricIndex) {
+      dispatch(changeCurrentLyricIndexAction(finalIndex))
+      const content = lyricList[finalIndex] && lyricList[finalIndex].content
+      message.open({
+        content: content,
+        key: 'lyric',
+        duration: 0,
+        className: 'lyric-message',
+      })
     }
   }
 

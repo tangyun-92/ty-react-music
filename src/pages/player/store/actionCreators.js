@@ -2,6 +2,7 @@ import { getSongDetail, getLyric } from '@/api/player'
 import * as actionsTypes from './constants'
 import { getRandomNumber } from '@/utils/math-utils'
 import { parseLyric } from '@/utils/parse-lyric'
+import { message } from 'antd'
 
 const changeSongDetailAction = (currentSong) => ({
   type: actionsTypes.CHANGE_CURRENT_SONG,
@@ -21,6 +22,11 @@ const changeCurrentSongIndexAction = (index) => ({
 const changeLyricListAction = (lyricList) => ({
   type: actionsTypes.CHANGE_LYRIC_LIST,
   lyricList,
+})
+
+export const changeCurrentLyricIndexAction = (index) => ({
+  type: actionsTypes.CHANGE_CURRENT_LYRIC_INDEX,
+  currentLyricIndex: index,
 })
 
 export const changeSequenceAction = (sequence) => ({
@@ -124,6 +130,7 @@ export const getSongToPlayListAction = (ids) => {
         newPlayList.push(song)
         dispatch(changePlayListAction(newPlayList))
       })
+      message.success('已添加到播放列表')
     }
   }
 }

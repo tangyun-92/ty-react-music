@@ -2,10 +2,12 @@
  * @Author: 唐云
  * @Date: 2021-02-21 13:49:45
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-22 13:53:32
+ * @Last Modified time: 2021-02-22 16:44:38
  * 榜单组件
  */
 import React, { memo } from 'react'
+
+import { useDispatch } from 'react-redux'
 
 import { TopRankingWrapper } from './style'
 import { getSizeImage } from '@/utils/format-utils'
@@ -13,7 +15,6 @@ import {
   getSongDetailAction,
   getSongToPlayListAction,
 } from '@/pages/player/store'
-import { useDispatch } from 'react-redux'
 
 export default memo(function TopRanking(props) {
   // props and state
