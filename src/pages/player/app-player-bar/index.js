@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-22 14:27:47
+ * @Last Modified time: 2021-02-22 15:29:36
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -12,7 +12,11 @@ import { NavLink } from 'react-router-dom'
 import { Slider } from 'antd'
 
 import { PlayBarWrapper, Control, PlayInfo, Operator } from './style'
-import { getSongDetailAction, changeSequenceAction } from './../store/actionCreators'
+import {
+  getSongDetailAction,
+  changeSequenceAction,
+  changeCurrentSong,
+} from './../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 
 export default memo(function AppPlayerBar() {
@@ -46,6 +50,12 @@ export default memo(function AppPlayerBar() {
   useEffect(() => {
     // 歌曲路径
     audioRef.current.src = getPlaySong(currentSong.id)
+    // 监听歌曲改变执行播放
+    audioRef.current.play().then(res => {
+      setIsPlaying(true)
+    }).catch(err => {
+      setIsPlaying(false)
+    })
   }, [currentSong])
 
   /**
@@ -109,16 +119,38 @@ export default memo(function AppPlayerBar() {
     dispatch(changeSequenceAction(currentSequence))
   }
 
+  // 切歌
+  const changeMusic = (tag) => {
+    dispatch(changeCurrentSong(tag))
+  }
+
+  // 歌曲播放完毕时
+  const handleMusicEnded = () => {
+    if (sequence === 2) {
+      // 单曲循环
+      audioRef.current.currentTime = 0
+      audioRef.current.play()
+    } else {
+      dispatch(changeCurrentSong(1))
+    }
+  }
+
   return (
     <PlayBarWrapper className="sprite_playbar">
       <div className="content wrap-v2">
         <Control isPlaying={isPlaying}>
-          <button className="sprite_playbar prev"></button>
+          <button
+            className="sprite_playbar prev"
+            onClick={(e) => changeMusic(-1)}
+          ></button>
           <button
             className="sprite_playbar play"
             onClick={(e) => playMusic()}
           ></button>
-          <button className="sprite_playbar next"></button>
+          <button
+            className="sprite_playbar next"
+            onClick={(e) => changeMusic(1)}
+          ></button>
         </Control>
         <PlayInfo>
           <div className="image">
@@ -159,12 +191,15 @@ export default memo(function AppPlayerBar() {
           </div>
           <div className="right sprite_playbar">
             <button className="sprite_playbar btn volume"></button>
-            <button className="sprite_playbar btn loop" onClick={e => changeSequence()}></button>
+            <button
+              className="sprite_playbar btn loop"
+              onClick={(e) => changeSequence()}
+            ></button>
             <button className="sprite_playbar btn playlist"></button>
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} onTimeUpdate={timeUpdate} />
+      <audio ref={audioRef} onTimeUpdate={e => timeUpdate(e)} onEnded={e => handleMusicEnded()} />
     </PlayBarWrapper>
   )
 })

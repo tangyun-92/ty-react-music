@@ -1,5 +1,6 @@
 import { getSongDetail } from '@/api/player'
 import * as actionsTypes from './constants'
+import { getRandomNumber } from '@/utils/math-utils'
 
 const changeSongDetailAction = (currentSong) => ({
   type: actionsTypes.CHANGE_CURRENT_SONG,
@@ -18,8 +19,41 @@ const changeCurrentSongIndexAction = (index) => ({
 
 export const changeSequenceAction = (sequence) => ({
   type: actionsTypes.CHANGE_SEQUENCE,
-  sequence
+  sequence,
 })
+
+// 切歌
+export const changeCurrentSong = (tag) => {
+  return (dispatch, getState) => {
+    const sequence = getState().getIn(['player', 'sequence'])
+    let currentSongIndex = getState().getIn(['player', 'currentSongIndex'])
+    const playList = getState().getIn(['player', 'playList'])
+
+    switch (sequence) {
+      case 1: // 随机播放
+        let randomIndex = getRandomNumber(playList.length)
+        while (randomIndex === currentSongIndex) {
+          randomIndex = getRandomNumber(playList.length)
+        }
+        currentSongIndex = randomIndex
+        break
+      default:
+        // 顺序播放
+        currentSongIndex += tag
+        if (currentSongIndex >= playList.length) {
+          currentSongIndex = 0
+        }
+        if (currentSongIndex < 0) {
+          currentSongIndex = playList.length - 1
+        }
+        break
+    }
+
+    const currentSong = playList[currentSongIndex]
+    dispatch(changeCurrentSongIndexAction(currentSongIndex))
+    dispatch(changeSongDetailAction(currentSong))
+  }
+}
 
 export const getSongDetailAction = (ids) => {
   return (dispatch, getState) => {
@@ -57,7 +91,7 @@ export const getSongToPlayListAction = (ids) => {
   return (dispatch, getState) => {
     const playList = getState().getIn(['player', 'playList'])
     const songIndex = playList.findIndex((song) => song.id === ids)
-    
+
     if (songIndex === -1) {
       getSongDetail(ids).then((res) => {
         const song = res.songs && res.songs[0]
@@ -69,7 +103,3 @@ export const getSongToPlayListAction = (ids) => {
     }
   }
 }
-
-// export const getSequenceAction = (sequence) => {
-
-// }
