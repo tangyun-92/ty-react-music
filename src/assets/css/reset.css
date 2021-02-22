@@ -183,3 +183,13 @@ span:hover.link {
 .ant-carousel .slick-dots li.slick-active button {
   background-color: red;
 }
+
+/* 加载中样式 */
+.example {
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
