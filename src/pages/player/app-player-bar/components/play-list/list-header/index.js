@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 11:05:54
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-23 16:02:37
+ * @Last Modified time: 2021-02-23 21:10:10
  * 播放列表头部组件
  */
 import React, { memo } from 'react'
@@ -20,9 +20,10 @@ export default memo(function PlayListHeader() {
   /**
    * redux hook
    */
-  const { playList } = useSelector(
+  const { playList, currentSong } = useSelector(
     (state) => ({
       playList: state.getIn(['player', 'playList']),
+      currentSong: state.getIn(['player', 'currentSong']),
     }),
     shallowEqual
   )
@@ -65,7 +66,7 @@ export default memo(function PlayListHeader() {
         </span>
       </div>
       <div className="right">
-        <span className="song-name">玫瑰玫瑰</span>
+        <span className="song-name">{currentSong.name}</span>
         <span
           className="close sprite_playlist"
           onClick={(e) => closeList()}

@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-23 14:17:17
+ * @Last Modified time: 2021-02-23 22:52:13
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -118,13 +118,13 @@ export default memo(function AppPlayerBar() {
     const finalIndex = i - 1
     if (finalIndex !== currentLyricIndex) {
       dispatch(changeCurrentLyricIndexAction(finalIndex))
-      const content = lyricList[finalIndex] && lyricList[finalIndex].content
-      message.open({
-        content: content,
-        key: 'lyric',
-        duration: 0,
-        className: 'lyric-message',
-      })
+      // const content = lyricList[finalIndex] && lyricList[finalIndex].content
+      // message.open({
+      //   content: content,
+      //   key: 'lyric',
+      //   duration: 0,
+      //   className: 'lyric-message',
+      // })
     }
   }
 
