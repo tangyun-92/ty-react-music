@@ -42,35 +42,11 @@ export const PlayListWrapper = styled.div`
     .line {
       position: absolute;
       top: 0;
-      left: 555px;
+      left: 553px;
       width: 6px;
       height: 260px;
       background-color: #000;
       opacity: 0.5;
     }
   }
-`
-
-export const ListHeaderWrapper = styled.div`
-  width: 100%;
-  height: 40px;
-  background-image: url(${require('@/assets/img/playpanel_bg.png').default});
-  background-position: 0 0;
-  padding: 0 5px;
-  color: #fff;
-`
-
-export const SongListWrapper = styled.div`
-  width: 553px;
-  height: 260px;
-  color: #aaa;
-  z-index: 2;
-`
-
-export const ListLyricWrapper = styled.div`
-  width: 424px;
-  height: 260px;
-  padding: 20px;
-  color: #989898;
-  z-index: 2;
 `

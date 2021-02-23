@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 
 export const ListHeaderWrapper = styled.div`
+  width: 100%;
   height: 40px;
+  background-image: url(${require('@/assets/img/playpanel_bg.png').default});
+  background-position: 0 0;
+  padding: 0 5px;
+  color: #fff;
   display: flex;
   align-items: center;
 

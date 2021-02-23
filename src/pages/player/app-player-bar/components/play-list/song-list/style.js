@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export const SongsWrapper = styled.div``
+export const SongsWrapper = styled.div`
+  width: 553px;
+  height: 260px;
+  color: #aaa;
+  z-index: 2;
+`
 
 export const NoSongsWrapper = styled.div`
   padding-top: 85px;

@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 09:21:48
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-23 21:21:48
+ * @Last Modified time: 2021-02-23 23:01:46
  * 播放列表
  */
 import React, { memo, useEffect, useRef } from 'react'
@@ -11,9 +11,6 @@ import { useDispatch } from 'react-redux'
 import { changeIsPlayList } from '../../../store/actionCreators'
 import {
   PlayListWrapper,
-  ListHeaderWrapper,
-  SongListWrapper,
-  ListLyricWrapper,
 } from './style'
 import PlayListHeader from './list-header'
 import PlayListSongs from './song-list'
@@ -37,22 +34,16 @@ export default memo(function PlayList() {
     <PlayListWrapper>
       <div className="mask" ref={maskRef}></div>
       <div className="container">
-        <ListHeaderWrapper>
-          <PlayListHeader></PlayListHeader>
-        </ListHeaderWrapper>
+        <PlayListHeader />
         <div className="content">
           <img
             className="img-bg"
             src="https://p2.music.126.net/SNSTwkUVrjyK_spAjOSXDw==/109951164739755353.jpg"
             alt=""
           />
-          <SongListWrapper>
-            <PlayListSongs />
-          </SongListWrapper>
+          <PlayListSongs />
           <div className="line"></div>
-          <ListLyricWrapper>
-            <PlayListLyric />
-          </ListLyricWrapper>
+          <PlayListLyric />
         </div>
       </div>
     </PlayListWrapper>
