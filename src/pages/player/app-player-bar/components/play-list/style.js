@@ -1,12 +1,24 @@
 import styled from 'styled-components'
 
 export const PlayListWrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  bottom: 47px;
-  width: 986px;
-  height: 300px;
-  transform: translate(-50%);
+  .mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 47px;
+    z-index: 10;
+  }
+
+  .container {
+    position: absolute;
+    left: 50%;
+    bottom: 47px;
+    width: 986px;
+    height: 300px;
+    transform: translate(-50%);
+    z-index: 30;
+  }
 
   .content {
     position: relative;

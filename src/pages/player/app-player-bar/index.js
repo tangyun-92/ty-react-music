@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-23 11:03:43
+ * @Last Modified time: 2021-02-23 14:17:17
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -30,7 +30,6 @@ export default memo(function AppPlayerBar() {
   const [progress, setProgress] = useState(0) // 实时进度条（播放中）
   const [isChanging, setIsChanging] = useState(false) // 是否正在改变进度条
   const [isPlaying, setIsPlaying] = useState(false) // 播放状态
-  // const [isPlayList, setIsPlayList] = useState(false) // 是否显示播放列表
 
   /**
    * redux hook

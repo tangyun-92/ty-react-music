@@ -9,7 +9,7 @@ const changeSongDetailAction = (currentSong) => ({
   currentSong,
 })
 
-const changePlayListAction = (playList) => ({
+export const changePlayListAction = (playList) => ({
   type: actionsTypes.CHANGE_PLAY_LIST,
   playList,
 })
