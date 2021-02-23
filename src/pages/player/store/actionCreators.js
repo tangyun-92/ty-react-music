@@ -4,7 +4,7 @@ import { getRandomNumber } from '@/utils/math-utils'
 import { parseLyric } from '@/utils/parse-lyric'
 import { message } from 'antd'
 
-const changeSongDetailAction = (currentSong) => ({
+export const changeSongDetailAction = (currentSong) => ({
   type: actionsTypes.CHANGE_CURRENT_SONG,
   currentSong,
 })

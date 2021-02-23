@@ -64,6 +64,7 @@ export const SongListWrapper = styled.div`
   width: 553px;
   height: 260px;
   color: #aaa;
+  z-index: 2;
 `
 
 export const ListLyricWrapper = styled.div`
@@ -71,4 +72,5 @@ export const ListLyricWrapper = styled.div`
   height: 260px;
   padding: 20px;
   color: #989898;
+  z-index: 2;
 `
