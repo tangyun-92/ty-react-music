@@ -34,6 +34,11 @@ export const changeSequenceAction = (sequence) => ({
   sequence,
 })
 
+export const changeIsPlayList = (isPlayList) => ({
+  type: actionsTypes.CHANGE_IS_PLAY_LIST,
+  isPlayList
+})
+
 /**
  * 切歌
  * @param {*} tag 0顺序播放 1随机播放 2单曲循环

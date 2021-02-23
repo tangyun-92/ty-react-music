@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-22 21:20:18
+ * @Last Modified time: 2021-02-23 11:03:43
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -17,8 +17,10 @@ import {
   changeSequenceAction,
   changeCurrentSong,
   changeCurrentLyricIndexAction,
+  changeIsPlayList
 } from './../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
+import PlayList from './components/play-list'
 
 export default memo(function AppPlayerBar() {
   /**
@@ -28,16 +30,26 @@ export default memo(function AppPlayerBar() {
   const [progress, setProgress] = useState(0) // 实时进度条（播放中）
   const [isChanging, setIsChanging] = useState(false) // 是否正在改变进度条
   const [isPlaying, setIsPlaying] = useState(false) // 播放状态
+  // const [isPlayList, setIsPlayList] = useState(false) // 是否显示播放列表
 
   /**
    * redux hook
    */
-  const { currentSong, sequence, lyricList, currentLyricIndex } = useSelector(
+  let {
+    currentSong,
+    sequence,
+    lyricList,
+    currentLyricIndex,
+    isPlayList,
+    playList,
+  } = useSelector(
     (state) => ({
       currentSong: state.getIn(['player', 'currentSong']), // 播放器选中的歌曲
       sequence: state.getIn(['player', 'sequence']), // 播放方式
       lyricList: state.getIn(['player', 'lyricList']), // 歌词列表
       currentLyricIndex: state.getIn(['player', 'currentLyricIndex']), // 播放歌曲选中的歌词
+      isPlayList: state.getIn(['player', 'isPlayList']), // 是否显示播放列表
+      playList: state.getIn(['player', 'playList']),
     }),
     shallowEqual
   )
@@ -54,12 +66,15 @@ export default memo(function AppPlayerBar() {
     // 歌曲路径
     audioRef.current.src = getPlaySong(currentSong.id)
     // 监听歌曲改变执行播放
-    audioRef.current.play().then(res => {
-      setIsPlaying(true)
-      message.success('已开始播放')
-    }).catch(err => {
-      setIsPlaying(false)
-    })
+    audioRef.current
+      .play()
+      .then((res) => {
+        setIsPlaying(true)
+        message.success('已开始播放')
+      })
+      .catch((err) => {
+        setIsPlaying(false)
+      })
   }, [currentSong])
 
   /**
@@ -90,7 +105,7 @@ export default memo(function AppPlayerBar() {
     // 乘以1000转为毫秒
     if (!isChanging) {
       setCurrentTime(currentTime * 1000)
-      setProgress((currentTime * 1000 / duration) * 100)
+      setProgress(((currentTime * 1000) / duration) * 100)
     }
 
     // 获取当前的歌词
@@ -118,7 +133,7 @@ export default memo(function AppPlayerBar() {
   const sliderChange = useCallback(
     (value) => {
       setProgress(value)
-      const currentTime = ((value / 100.0) * duration)
+      const currentTime = (value / 100.0) * duration
       setCurrentTime(currentTime)
       setIsChanging(true)
     },
@@ -163,6 +178,11 @@ export default memo(function AppPlayerBar() {
     } else {
       dispatch(changeCurrentSong(1))
     }
+  }
+
+  const handlePlayList = () => {
+    isPlayList = !isPlayList
+    dispatch(changeIsPlayList(isPlayList))
   }
 
   return (
@@ -225,12 +245,19 @@ export default memo(function AppPlayerBar() {
               className="sprite_playbar btn loop"
               onClick={(e) => changeSequence()}
             ></button>
-            <button className="sprite_playbar btn playlist"></button>
+            <button
+              className="sprite_playbar btn playlist"
+              onClick={(e) => handlePlayList()}
+            >{playList.length}</button>
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} onTimeUpdate={e => timeUpdate(e)} onEnded={e => handleMusicEnded()} />
+      <audio
+        ref={audioRef}
+        onTimeUpdate={(e) => timeUpdate(e)}
+        onEnded={(e) => handleMusicEnded()}
+      />
+      {isPlayList && <PlayList />}
     </PlayBarWrapper>
   )
 })
-

@@ -150,6 +150,7 @@ button {
   background: url(../img/sprite_cover.png) no-repeat -145px -57px;
 }
 
+/* 改变antd-message默认样式 */
 .ant-message .ant-message-notice-content {
   position: fixed;
   left: 50%;
@@ -164,6 +165,7 @@ span:hover.link {
   cursor: pointer;
 }
 
+/* 改变antd跑马灯默认样式 */
 .ant-carousel .slick-dots li {
   width: 8px;
   height: 8px;

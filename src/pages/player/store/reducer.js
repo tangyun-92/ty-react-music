@@ -9,6 +9,7 @@ const defaultState = Map({
   sequence: 0, // 0循环播放 1随机播放 2单曲循环
   lyricList: [], // 歌词
   currentLyricIndex: 0, // 当前播放歌词的索引
+  isPlayList: false, // 是否显示播放列表
 })
 
 function reducer(state = defaultState, action) {
@@ -25,6 +26,8 @@ function reducer(state = defaultState, action) {
       return state.set('lyricList', action.lyricList)
     case actionTypes.CHANGE_CURRENT_LYRIC_INDEX:
       return state.set('currentLyricIndex', action.currentLyricIndex)
+    case actionTypes.CHANGE_IS_PLAY_LIST:
+      return state.set('isPlayList', action.isPlayList)
     default:
       return state
   }
