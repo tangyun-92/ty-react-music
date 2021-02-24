@@ -2,7 +2,7 @@ import request from '@/services/request'
 
 /**
  * 获取某首歌曲详情
- * @param {*} ids id
+ * @param {*} ids 歌曲id
  */
 export function getSongDetail(ids) {
   return request({
@@ -20,6 +20,19 @@ export function getSongDetail(ids) {
 export function getLyric(id) {
   return request({
     url: '/lyric',
+    params: {
+      id
+    }
+  })
+}
+
+/**
+ * 获取歌单详情
+ * @param {*} id 歌单id
+ */
+export function getPlayListDetail(id) {
+  return request({
+    url: '/playlist/detail',
     params: {
       id
     }

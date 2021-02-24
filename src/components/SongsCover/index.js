@@ -2,16 +2,31 @@
  * @Author: 唐云
  * @Date: 2021-02-20 21:29:59
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 22:05:45
+ * @Last Modified time: 2021-02-24 15:52:04
  * 歌曲封面组件
  */
 import React, { memo } from 'react'
 
 import { SongsCoverWrapper } from './style'
 import { getCount, getSizeImage } from '@/utils/format-utils.js'
+import {
+  getPlayListDetailToPlayListAction,
+  changePlayListAction,
+} from '@/pages/player/store/actionCreators'
+import { useDispatch } from 'react-redux'
 
 export default memo(function SongsCover(props) {
   const { info } = props
+
+  const dispatch = useDispatch()
+
+  /**
+   * other handles
+   */
+  const playMusic = (id) => {
+    dispatch(changePlayListAction([]))
+    dispatch(getPlayListDetailToPlayListAction(id))
+  }
 
   return (
     <SongsCoverWrapper>
@@ -23,7 +38,7 @@ export default memo(function SongsCover(props) {
               <i className="sprite_icon erji"></i>
               {getCount(info.playCount)}
             </span>
-            <i className="sprite_icon play"></i>
+            <i className="sprite_icon play" onClick={(e) => playMusic(info.id)}></i>
           </div>
         </div>
       </div>

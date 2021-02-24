@@ -46,6 +46,7 @@ export const SongsCoverWrapper = styled.div`
           width: 16px;
           height: 17px;
           background-position: 0 0;
+          cursor: pointer;
         }
       }
     }

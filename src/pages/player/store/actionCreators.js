@@ -1,4 +1,4 @@
-import { getSongDetail, getLyric } from '@/api/player'
+import { getSongDetail, getLyric, getPlayListDetail } from '@/api/player'
 import * as actionsTypes from './constants'
 import { getRandomNumber } from '@/utils/math-utils'
 import { parseLyric } from '@/utils/parse-lyric'
@@ -38,6 +38,31 @@ export const changeIsPlayList = (isPlayList) => ({
   type: actionsTypes.CHANGE_IS_PLAY_LIST,
   isPlayList
 })
+
+/**
+ * 根据歌单id获取歌单的详情-放入播放列表
+ * @param {*} id 歌单id
+ */
+export const getPlayListDetailToPlayListAction = (id) => {
+  return (dispatch, getState) => {
+    const playList = getState().getIn(['player', 'playList'])
+
+    getPlayListDetail(id).then((res) => {
+      const trackIds = res.playlist.trackIds.slice(0, 10)
+      trackIds.forEach((item, index) => {
+        getSongDetail(item.id).then((res) => {
+          const song = res.songs && res.songs[0]
+          if (!song) return
+          playList.push(song)
+          dispatch(changePlayListAction(playList))
+          if (index === 0) {
+            dispatch(getSongDetailAction(playList[0].id))
+          }
+        })
+      })
+    })
+  }
+}
 
 /**
  * 切歌
