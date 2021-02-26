@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:31
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:17:26
+ * @Last Modified time: 2021-02-26 21:56:53
  * 入驻歌手
  */
 import React, { memo, useEffect } from 'react'
@@ -20,7 +20,6 @@ export default memo(function InSinger() {
     }),
     shallowEqual
   )
-  console.log(hotArtists)
 
   // redux hooks
   const dispatch = useDispatch()

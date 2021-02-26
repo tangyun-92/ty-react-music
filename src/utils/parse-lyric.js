@@ -3,7 +3,6 @@
  * @param {*} lyricString 歌词
  */
 export function parseLyric(lyricString) {
-  console.log(lyricString)
   const parseExp = /\[(\d{2}):(\d{2})\.(\d{2,3})\]/
   const lineStrings = lyricString.split('\n')
   const lyrics = []
