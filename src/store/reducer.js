@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux-immutable'
 
-import { reducer as recommendReducer } from '@/pages/discover/c-pages/recommend/store'
-import { reducer as artistsReducer } from '@/pages/discover/c-pages/artist/store'
+import { reducer as recommendReducer } from './discover/recommend'
+import { reducer as artistsReducer } from './discover/artist'
 import { reducer as playerReducer } from '@/pages/player/store'
 
 const cReducer = combineReducers({

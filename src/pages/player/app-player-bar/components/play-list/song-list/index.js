@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 14:12:22
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-23 17:22:12
+ * @Last Modified time: 2021-02-26 21:21:50
  * 播放列表-歌曲列表组件
  */
 import React, { memo } from 'react'
@@ -16,7 +16,7 @@ import {
   changeIsPlayList,
   changePlayListAction,
   changeSongDetailAction,
-} from '../../../../store/actionCreators'
+} from '@/store/player/actionCreators'
 import { formatMinuteSecond } from '@/utils/format-utils'
 
 export default memo(function PlayListSongs() {

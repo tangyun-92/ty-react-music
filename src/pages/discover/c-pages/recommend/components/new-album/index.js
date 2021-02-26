@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:29:17
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 23:18:51
+ * @Last Modified time: 2021-02-26 21:17:58
  * 推荐-新碟上架组件
  */
 import React, { memo, useEffect, useRef } from 'react'
@@ -12,7 +12,7 @@ import { Carousel } from 'antd'
 import { NewAlbumWrapper } from './style'
 import TYThemeHeaderRecommend from '@/components/ThemeHeaderRecommend'
 import AlbumCover from '@/components/AlbumCover'
-import { getNewAlbum } from './../../store/actionCreators'
+import { getNewAlbum } from '@/store/discover/recommend/actionCreators'
 
 export default memo(function TYNewAlbum() {
   // state

@@ -2,14 +2,14 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:31
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-24 23:01:10
+ * @Last Modified time: 2021-02-26 21:17:26
  * 入驻歌手
  */
 import React, { memo, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { InSingerWrapper } from './style'
-import { getHotArtistAction } from '@/pages/discover/c-pages/artist/store/actionCreators'
+import { getHotArtistAction } from '@/store/discover/artist/actionCreators'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 export default memo(function InSinger() {
