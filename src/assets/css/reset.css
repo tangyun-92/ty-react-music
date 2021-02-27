@@ -195,3 +195,9 @@ span:hover.link {
   background: rgba(0, 0, 0, 0.05);
   border-radius: 4px;
 }
+
+/* 修改antd-BackTop的默认样式 */
+.ant-back-top {
+  bottom: 100px;
+  right: 50px;
+}
