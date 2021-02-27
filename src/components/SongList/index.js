@@ -2,16 +2,33 @@
  * @Author: 唐云
  * @Date: 2021-02-27 17:03:45
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 23:19:02
+ * @Last Modified time: 2021-02-27 23:28:40
  * 歌曲列表组件
  */
 import React, { memo } from 'react'
 
 import { SongListWrapper } from './style'
 import { getSizeImage, formatMinuteSecond } from '@/utils/format-utils'
+import { useDispatch } from 'react-redux'
+import { getSongDetailAction } from '@/store/player/actionCreators'
 
 export default memo(function SongList(props) {
+  /**
+   * state and props
+   */
   const { list } = props
+
+  /**
+   * redux hooks
+   */
+  const dispatch = useDispatch()
+
+  /**
+   * other handles
+   */
+  const playMusic = (id) => {
+    dispatch(getSongDetailAction(id))
+  }
 
   return (
     <SongListWrapper>
@@ -40,7 +57,7 @@ export default memo(function SongList(props) {
                       {index < 3 ? (
                         <img src={getSizeImage(item.al.picUrl, 50)} alt="" />
                       ) : null}
-                      <span className="play sprite_table"></span>
+                      <span className="play sprite_table" onClick={e => playMusic(item.id)}></span>
                       <span className="name">{item.name}</span>
                     </div>
                   </td>
