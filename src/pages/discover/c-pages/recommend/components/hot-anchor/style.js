@@ -50,6 +50,7 @@ export const HotAnchorWrapper = styled.div`
 
             .name {
               width: 100%;
+              color: #000;
             }
 
             .info {
