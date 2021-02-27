@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 13:49:45
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-22 16:44:38
+ * @Last Modified time: 2021-02-27 14:18:00
  * 榜单组件
  */
 import React, { memo } from 'react'
@@ -14,7 +14,7 @@ import { getSizeImage } from '@/utils/format-utils'
 import {
   getSongDetailAction,
   getSongToPlayListAction,
-} from '@/pages/player/store'
+} from '@/store/player/actionCreators'
 
 export default memo(function TopRanking(props) {
   // props and state
