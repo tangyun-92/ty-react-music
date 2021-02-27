@@ -2,14 +2,15 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:04
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 22:11:38
+ * @Last Modified time: 2021-02-27 10:10:22
  * 热门主播
  */
 import React, { memo, useEffect } from 'react'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { HotAnchorWrapper } from './style'
 import { getTopAnchorsAction } from '@/store/discover/dj-radio/actionCreators'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function HotAnchor() {
   // state and props
@@ -40,7 +41,7 @@ export default memo(function HotAnchor() {
               <div key={item.id} className="item">
                 <a href="/todo">
                   <div className="img">
-                    <img src={item.avatarUrl} alt="" />
+                    <img src={getSizeImage(item.avatarUrl, 40)} alt="" />
                   </div>
                   <div className="right">
                     <div className="name text-nowrap">{item.nickName}</div>
