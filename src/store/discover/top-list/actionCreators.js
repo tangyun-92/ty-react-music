@@ -7,9 +7,14 @@ const changeCloudMusicTopListAction = (cloudMusicTopList) => ({
   cloudMusicTopList,
 })
 
-const changeTopDetailAction = topDetail => ({
+const changeTopDetailAction = (topDetail) => ({
   type: actionTypes.CHANGE_TOP_DETAIL,
-  topDetail
+  topDetail,
+})
+
+export const changSongListAction = (songList) => ({
+  type: actionTypes.CHANGE_SONG_LIST,
+  songList,
 })
 
 /**
@@ -28,8 +33,9 @@ export const getCloudMusicTopListAction = () => {
  */
 export const getTopDetailAction = (id) => {
   return (dispatch) => {
-    getTopDetail(id).then(res => {
+    getTopDetail(id).then((res) => {
       dispatch(changeTopDetailAction(res.playlist))
+      dispatch(changSongListAction(res.playlist.tracks))
     })
   }
 }

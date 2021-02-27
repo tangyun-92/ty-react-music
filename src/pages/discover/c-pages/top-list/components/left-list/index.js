@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-26 23:17:10
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:06:37
+ * @Last Modified time: 2021-02-27 23:04:57
  * 排行榜左侧榜单组件
  */
 import React, { memo, useEffect, useState } from 'react'
@@ -11,6 +11,7 @@ import classNames from 'classnames'
 
 import {
   getCloudMusicTopListAction,
+  getTopDetailAction,
 } from '@/store/discover/top-list/actionCreators'
 import { LeftListWrapper } from './style'
 import { getSizeImage } from '@/utils/format-utils'
@@ -37,13 +38,15 @@ export default memo(function LeftList() {
    */
   useEffect(() => {
     dispatch(getCloudMusicTopListAction())
+    dispatch(getTopDetailAction(19723756))
   }, [dispatch])
 
   /**
    * other handles
    */
-  const handleListIndex = (index) => {
+  const handleListIndex = (item, index) => {
     setListIndex(index)
+    dispatch(getTopDetailAction(item.id))
   }
 
   return (
@@ -59,7 +62,7 @@ export default memo(function LeftList() {
                   active: listIndex === index,
                 })}
                 key={item.id}
-                onClick={(e) => handleListIndex(index)}
+                onClick={(e) => handleListIndex(item, index)}
               >
                 <img src={getSizeImage(item.coverImgUrl, 40)} alt="" />
                 <div className="info">

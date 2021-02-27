@@ -2,16 +2,18 @@
  * @Author: 唐云
  * @Date: 2021-02-26 23:17:10
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:05:39
+ * @Last Modified time: 2021-02-27 23:06:18
  * 排行榜右侧介绍组件
  */
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { ListDetailWrapper } from './style'
-import { getTopDetailAction } from '@/store/discover/top-list/actionCreators'
 import { getSizeImage, formatDate } from '@/utils/format-utils'
-import { changePlayListAction, getPlayListDetailToPlayListAction } from '@/store/player/actionCreators'
+import {
+  changePlayListAction,
+  getPlayListDetailToPlayListAction,
+} from '@/store/player/actionCreators'
 
 export default memo(function ListDetail() {
   /**
@@ -24,13 +26,6 @@ export default memo(function ListDetail() {
     shallowEqual
   )
   const dispatch = useDispatch()
-
-  /**
-   * other hooks
-   */
-  useEffect(() => {
-    dispatch(getTopDetailAction(19723756))
-  }, [dispatch])
 
   // 播放
   const playMusic = (id) => {

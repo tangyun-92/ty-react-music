@@ -49,6 +49,7 @@ export const getPlayListDetailToPlayListAction = (id, way) => {
 
     getPlayListDetail(id).then((res) => {
       const trackIds = res.playlist.trackIds
+      
       trackIds.forEach((item, index) => {
         getSongDetail(item.id).then((res) => {
           const song = res.songs && res.songs[0]
