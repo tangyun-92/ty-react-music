@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 14:12:22
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 09:22:57
+ * @Last Modified time: 2021-02-27 17:13:59
  * 播放列表-歌曲列表组件
  */
 import React, { memo } from 'react'
@@ -35,7 +35,7 @@ export default memo(function PlayListSongs() {
   const dispatch = useDispatch()
 
   /**
-   * handle function
+   * other handles
    */
   // 隐藏播放列表
   const hidePlayList = () => {

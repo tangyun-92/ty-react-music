@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:31
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 10:11:50
+ * @Last Modified time: 2021-02-27 17:09:47
  * 入驻歌手
  */
 import React, { memo, useEffect } from 'react'
@@ -14,18 +14,20 @@ import { getHotArtistAction } from '@/store/discover/artist/actionCreators'
 import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function InSinger() {
-  // state and props
+  /**
+   * redux hooks
+   */
   const { hotArtists } = useSelector(
     (state) => ({
       hotArtists: state.getIn(['artist', 'hotArtists']),
     }),
     shallowEqual
   )
-
-  // redux hooks
   const dispatch = useDispatch()
-
-  // other hooks
+  
+  /**
+   * other hooks
+   */
   useEffect(() => {
     dispatch(getHotArtistAction(5))
   }, [dispatch])
@@ -41,7 +43,11 @@ export default memo(function InSinger() {
           {hotArtists.map((item) => {
             return (
               <a href="/todo" key={item.id} className="list-item">
-                <img src={getSizeImage(item.picUrl, 62)} className="img" alt="" />
+                <img
+                  src={getSizeImage(item.picUrl, 62)}
+                  className="img"
+                  alt=""
+                />
                 <div className="item-right">
                   <div className="artist-name">{item.name}</div>
                   <div className="artist-intro text-nowrap">音乐人</div>

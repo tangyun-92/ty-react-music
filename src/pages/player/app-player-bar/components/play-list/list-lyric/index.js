@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 21:11:38
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-23 22:50:09
+ * @Last Modified time: 2021-02-27 17:13:43
  * 歌词列表组件
  */
 import React, { memo, useEffect, useRef, useState } from 'react'
@@ -12,8 +12,14 @@ import classNames from 'classnames'
 import { ListLyricWrapper } from './style'
 
 export default memo(function PlayListLyric() {
+  /**
+   * state and props
+   */
   const [lyricStyle, setLyricStyle] = useState(null)
 
+  /**
+   * redux hooks
+   */
   const { lyricList, currentLyricIndex } = useSelector(
     (state) => ({
       lyricList: state.getIn(['player', 'lyricList']),
@@ -26,6 +32,7 @@ export default memo(function PlayListLyric() {
    * other hooks
    */
   const lyricRef = useRef()
+  
   useEffect(() => {
     if (currentLyricIndex > 0 && currentLyricIndex < 3) return
 

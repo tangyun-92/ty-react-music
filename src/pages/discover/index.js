@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-19 15:22:59 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-19 22:29:07
+ * @Last Modified time: 2021-02-27 17:07:04
  * 发现音乐
  */
 import React, { memo } from 'react'
@@ -13,7 +13,9 @@ import { DiscoverWrapper, TopMenu } from './style'
 import { discoverMenu } from '@/common/local-data.js'
 
 export default memo(function TYDiscover(props) {
-
+  /**
+   * state and props
+   */
   const { route } = props
 
   return (

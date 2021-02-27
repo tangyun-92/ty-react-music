@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:29:17
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:18:27
+ * @Last Modified time: 2021-02-27 17:10:38
  * 推荐-榜单组件
  */
 import React, { memo, useEffect } from 'react'
@@ -14,6 +14,9 @@ import { getTopListAction } from '@/store/discover/recommend/actionCreators'
 import TopRanking from '@/components/TopRanking'
 
 export default memo(function TYRanking() {
+  /**
+   * redux hooks
+   */
   const { upRanking, newRanking, originRanking } = useSelector(
     (state) => ({
       upRanking: state.getIn(['recommend', 'upRanking']),
@@ -22,11 +25,11 @@ export default memo(function TYRanking() {
     }),
     shallowEqual
   )
-
-  // redux hooks
   const dispatch = useDispatch()
 
-  // other hooks
+  /**
+   * other hooks
+   */
   useEffect(() => {
     dispatch(getTopListAction(0))
     dispatch(getTopListAction(2))

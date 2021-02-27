@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 21:29:59
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 14:19:02
+ * @Last Modified time: 2021-02-27 17:17:20
  * 歌曲封面组件
  */
 import React, { memo } from 'react'
@@ -16,8 +16,14 @@ import {
 import { useDispatch } from 'react-redux'
 
 export default memo(function SongsCover(props) {
+  /**
+   * state and props
+   */
   const { info } = props
 
+  /**
+   * redux hooks
+   */
   const dispatch = useDispatch()
 
   /**

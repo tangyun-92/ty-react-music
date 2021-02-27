@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:11:24
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 15:37:36
+ * @Last Modified time: 2021-02-27 17:17:32
  * 推荐页面title组件
  */
 import React, { memo } from 'react'
@@ -11,6 +11,9 @@ import PropTypes from 'prop-types'
 import { HeaderWrapper } from './style'
 
 const TYThemeHeaderRecommend = memo(function (props) {
+  /**
+   * state and props
+   */
   const { title, keywords } = props
 
   return (

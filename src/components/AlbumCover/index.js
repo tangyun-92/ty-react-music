@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 23:11:07 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-20 23:27:59
+ * @Last Modified time: 2021-02-27 17:16:01
  * 专辑封面组件
  */
 import React, { memo } from 'react'
@@ -11,6 +11,9 @@ import { AlbumWrapper } from './style'
 import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function AlbumCover(props) {
+  /**
+   * state and props
+   */
   const { info, size = '100px', width = '118px', bgp = '-570px' } = props
 
   return (

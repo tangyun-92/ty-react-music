@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:04
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 10:10:22
+ * @Last Modified time: 2021-02-27 17:07:45
  * 热门主播
  */
 import React, { memo, useEffect } from 'react'
@@ -13,18 +13,20 @@ import { getTopAnchorsAction } from '@/store/discover/dj-radio/actionCreators'
 import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function HotAnchor() {
-  // state and props
+  /**
+   * redux hooks
+   */
   const { hotAnchors } = useSelector(
     (state) => ({
       hotAnchors: state.getIn(['anchor', 'hotAnchors']),
     }),
     shallowEqual
   )
-
-  // redux hooks
   const dispatch = useDispatch()
 
-  // other hooks
+  /**
+   * other hooks
+   */
   useEffect(() => {
     dispatch(getTopAnchorsAction(5))
   }, [dispatch])

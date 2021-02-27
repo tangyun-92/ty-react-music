@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 09:21:48
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 14:16:22
+ * @Last Modified time: 2021-02-27 17:14:34
  * 播放列表
  */
 import React, { memo, useEffect, useRef } from 'react'
@@ -15,8 +15,14 @@ import PlayListSongs from './song-list'
 import PlayListLyric from './list-lyric'
 
 export default memo(function PlayList() {
+  /**
+   * redux hooks
+   */
   const dispatch = useDispatch()
 
+  /**
+   * other hooks
+   */
   // 点击空白区域关闭播放列表
   const maskRef = useRef()
   useEffect(() => {

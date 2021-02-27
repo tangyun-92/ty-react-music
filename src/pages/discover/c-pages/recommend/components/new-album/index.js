@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:29:17
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:17:58
+ * @Last Modified time: 2021-02-27 17:10:09
  * 推荐-新碟上架组件
  */
 import React, { memo, useEffect, useRef } from 'react'
@@ -15,18 +15,20 @@ import AlbumCover from '@/components/AlbumCover'
 import { getNewAlbum } from '@/store/discover/recommend/actionCreators'
 
 export default memo(function TYNewAlbum() {
-  // state
+  /**
+   * redux hooks
+   */
   const { newAlbums } = useSelector(
     (state) => ({
       newAlbums: state.getIn(['recommend', 'newAlbums']),
     }),
     shallowEqual
   )
-
-  // redux hooks
   const dispatch = useDispatch()
-
-  // other hooks
+  
+  /**
+   * other hooks
+   */
   const pageRef = useRef()
   useEffect(() => {
     dispatch(getNewAlbum(10))

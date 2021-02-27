@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 15:02:37
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:14:44
+ * @Last Modified time: 2021-02-27 17:08:07
  * 推荐-热门推荐组件
  */
 import React, { memo, useEffect } from 'react'
@@ -11,22 +11,23 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import { HotRecommendWrapper } from './style'
 import TYThemeHeaderRecommend from '@/components/ThemeHeaderRecommend'
 import TYSongsCover from '@/components/SongsCover'
-// import { getRecommend } from './../../store/actionCreators'
 import { getRecommend } from '@/store/discover/recommend/actionCreators'
 
 export default memo(function TYHotRecommend() {
-  // state
+  /**
+   * redux hooks
+   */
   const { hotRecommendList } = useSelector(
     (state) => ({
       hotRecommendList: state.getIn(['recommend', 'hotRecommendList']),
     }),
     shallowEqual
   )
-
-  // redux hooks
   const dispatch = useDispatch()
 
-  // other hooks
+  /**
+   * other hooks
+   */
   useEffect(() => {
     dispatch(getRecommend(8))
   }, [dispatch])

@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 13:49:45
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 14:18:00
+ * @Last Modified time: 2021-02-27 17:17:56
  * 榜单组件
  */
 import React, { memo } from 'react'
@@ -17,15 +17,19 @@ import {
 } from '@/store/player/actionCreators'
 
 export default memo(function TopRanking(props) {
-  // props and state
+  /**
+   * state and props
+   */
   const { info } = props
   const { tracks = [] } = info
 
-  // redux hooks
+  /**
+   * redux hooks
+   */
   const dispatch = useDispatch()
 
   /**
-   * other handle
+   * other handles
    */
   // 播放音乐
   const playMusic = (item) => {

@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 11:05:54
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:21:25
+ * @Last Modified time: 2021-02-27 17:13:14
  * 播放列表头部组件
  */
 import React, { memo } from 'react'
@@ -31,7 +31,7 @@ export default memo(function PlayListHeader() {
   const dispatch = useDispatch()
 
   /**
-   * handle function
+   * other handles
    */
   // 关闭播放列表
   const closeList = () => {

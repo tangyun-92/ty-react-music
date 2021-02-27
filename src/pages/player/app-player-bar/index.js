@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:21:02
+ * @Last Modified time: 2021-02-27 17:15:35
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -32,7 +32,7 @@ export default memo(function AppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false) // 播放状态
 
   /**
-   * redux hook
+   * redux hooks
    */
   let {
     currentSong,
@@ -77,15 +77,12 @@ export default memo(function AppPlayerBar() {
   }, [currentSong])
 
   /**
-   * other handle
+   * other handles
    */
   const picUrl = (currentSong.al && currentSong.al.picUrl) || '' // 歌曲图片
   const singerName = (currentSong.ar && currentSong.ar[0].name) || '未知歌手' // 歌手名称
   const duration = currentSong.dt || 0 // 歌曲总时长
 
-  /**
-   * handle function
-   */
   // 点击播放音乐
   const playMusic = useCallback(() => {
     // 播放歌曲

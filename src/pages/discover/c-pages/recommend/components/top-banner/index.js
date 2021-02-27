@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 15:02:12 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-26 21:18:55
+ * @Last Modified time: 2021-02-27 17:11:46
  * 推荐-banner组件
  */
 import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
@@ -13,26 +13,34 @@ import { BannerWrapper, BannerLeft, BannerRight, BannerControl } from './style'
 import { getTopBanner } from '@/store/discover/recommend/actionCreators'
 
 export default memo(function TYTopBanner() {
-  // state
+  /**
+   * state and props
+   */
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // 组件和redux关联：获取数据和操作
+  /**
+   * redux hooks
+   */
   const { topBanners } = useSelector(
     (state) => ({
-      // topBanners: state.get('recommend').get('topBanners'),
       topBanners: state.getIn(['recommend', 'topBanners']),
     }),
     shallowEqual
   )
   const dispatch = useDispatch()
 
-  // 其他hooks
+  /**
+   * other hooks
+   */
   const bannerRef = useRef()
 
   useEffect(() => {
     dispatch(getTopBanner())
   }, [dispatch])
 
+  /**
+   * other handles
+   */
   const bannerChange = useCallback((from, to) => {
     setCurrentIndex(to)
   }, [])

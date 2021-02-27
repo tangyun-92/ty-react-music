@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-26 23:17:10
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 16:21:00
+ * @Last Modified time: 2021-02-27 17:05:39
  * 排行榜右侧介绍组件
  */
 import React, { memo, useEffect } from 'react'
@@ -15,7 +15,7 @@ import { changePlayListAction, getPlayListDetailToPlayListAction } from '@/store
 
 export default memo(function ListDetail() {
   /**
-   * state and props
+   * redux hooks
    */
   const { topDetail } = useSelector(
     (state) => ({
@@ -23,10 +23,6 @@ export default memo(function ListDetail() {
     }),
     shallowEqual
   )
-
-  /**
-   * redux hooks
-   */
   const dispatch = useDispatch()
 
   /**

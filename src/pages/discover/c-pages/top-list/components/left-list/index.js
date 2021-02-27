@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-26 23:17:10
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 10:07:59
+ * @Last Modified time: 2021-02-27 17:06:37
  * 排行榜左侧榜单组件
  */
 import React, { memo, useEffect, useState } from 'react'
@@ -20,16 +20,16 @@ export default memo(function LeftList() {
    * state and props
    */
   const [listIndex, setListIndex] = useState(0) // 榜单索引
+
+  /**
+   * redux hooks
+   */
   const { cloudMusicTopList } = useSelector(
     (state) => ({
       cloudMusicTopList: state.getIn(['topList', 'cloudMusicTopList']), // 特色榜数据
     }),
     shallowEqual
   )
-
-  /**
-   * redux hooks
-   */
   const dispatch = useDispatch()
 
   /**
@@ -39,6 +39,9 @@ export default memo(function LeftList() {
     dispatch(getCloudMusicTopListAction())
   }, [dispatch])
 
+  /**
+   * other handles
+   */
   const handleListIndex = (index) => {
     setListIndex(index)
   }
