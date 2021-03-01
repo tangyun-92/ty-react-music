@@ -31,7 +31,7 @@ export default memo(function PlayListHeader() {
   const dispatch = useDispatch()
 
   /**
-   * other handles
+   * other methods
    */
   // 关闭播放列表
   const closeList = () => {

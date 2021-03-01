@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-27 23:43:15
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 16:03:05
+ * @Last Modified time: 2021-03-01 16:19:46
  * 歌单内容组件
  */
 import React, { memo } from 'react'
@@ -28,10 +28,17 @@ export default memo(function PlayListContent() {
     }),
     shallowEqual
   )
-  const classifyList = classifySongs.playlists || []
-  const total = classifySongs.total || 0
   const dispatch = useDispatch()
 
+  /**
+   * other handles
+   */
+  const classifyList = classifySongs.playlists || []
+  const total = classifySongs.total || 0
+  
+  /**
+   * other methods
+   */
   const onPageChange = (page, pageSize) => {
     dispatch(changeCurrentPageAction(page))
     dispatch(getClassifySongsAction(pageSize, page))

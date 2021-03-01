@@ -39,7 +39,7 @@ export default memo(function TYTopBanner() {
   }, [dispatch])
 
   /**
-   * other handles
+   * other methods
    */
   const bannerChange = useCallback((from, to) => {
     setCurrentIndex(to)

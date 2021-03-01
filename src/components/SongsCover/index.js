@@ -27,7 +27,7 @@ export default memo(function SongsCover(props) {
   const dispatch = useDispatch()
 
   /**
-   * other handles
+   * other methods
    */
   const playMusic = (id) => {
     dispatch(changePlayListAction([]))

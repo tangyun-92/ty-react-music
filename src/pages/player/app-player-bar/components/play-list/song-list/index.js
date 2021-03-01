@@ -35,7 +35,7 @@ export default memo(function PlayListSongs() {
   const dispatch = useDispatch()
 
   /**
-   * other handles
+   * other methods
    */
   // 隐藏播放列表
   const hidePlayList = () => {

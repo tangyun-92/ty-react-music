@@ -42,7 +42,7 @@ export default memo(function LeftList() {
   }, [dispatch])
 
   /**
-   * other handles
+   * other methods
    */
   const handleListIndex = (item, index) => {
     setListIndex(index)

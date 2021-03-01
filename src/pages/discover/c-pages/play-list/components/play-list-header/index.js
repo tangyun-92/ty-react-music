@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-27 23:43:46
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 16:02:30
+ * @Last Modified time: 2021-03-01 16:13:38
  * 歌单头部组件
  */
 import React, { memo, useEffect, useState } from 'react'
@@ -47,7 +47,7 @@ export default memo(function PlayListHeader() {
   }, [dispatch])
 
   /**
-   * other handles
+   * other methods
    */
   // 选择分类
   function checkClassify(name) {
@@ -58,13 +58,13 @@ export default memo(function PlayListHeader() {
     setShowClassify(false)
   }
 
+  // 最新/最热
   const changeOrder = (order) => {
     if (order === '最新') {
       setOrder('热门')
       dispatch(getClassifySongsAction(pageSize, 1, 'new'))
     } else {
       setOrder('最新')
-      console.log(order)
       dispatch(getClassifySongsAction(pageSize, 1, 'hot'))
     }
   }

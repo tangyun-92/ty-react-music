@@ -77,7 +77,7 @@ export default memo(function AppPlayerBar() {
   }, [currentSong])
 
   /**
-   * other handles
+   * other methods
    */
   const picUrl = (currentSong.al && currentSong.al.picUrl) || '' // 歌曲图片
   const singerName = (currentSong.ar && currentSong.ar[0].name) || '未知歌手' // 歌手名称

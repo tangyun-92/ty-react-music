@@ -29,7 +29,7 @@ export default memo(function TopRanking(props) {
   const dispatch = useDispatch()
 
   /**
-   * other handles
+   * other methods
    */
   // 播放音乐
   const playMusic = (item) => {

@@ -11,7 +11,7 @@ export default memo(function TYPagination(props) {
   const { currentPage, total, onPageChange, pageSize } = props
 
   /**
-   * other handles
+   * other methods
    */
   function itemRender(current, type, originalElement) {
     if (type === 'prev') {
