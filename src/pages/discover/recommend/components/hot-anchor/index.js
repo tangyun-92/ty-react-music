@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:04
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 16:39:48
+ * @Last Modified time: 2021-03-01 21:25:35
  * 热门主播
  */
 import React, { memo, useEffect } from 'react'
@@ -18,7 +18,7 @@ export default memo(function HotAnchor() {
    */
   const { hotAnchors } = useSelector(
     (state) => ({
-      hotAnchors: state.getIn(['anchor', 'hotAnchors']),
+      hotAnchors: state.getIn(['djRadio', 'hotAnchors']),
     }),
     shallowEqual
   )

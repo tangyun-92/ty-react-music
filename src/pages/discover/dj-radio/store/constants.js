@@ -1,1 +1,2 @@
-export const CHANGE_HOT_ANCHOR = 'recommend/CHANGE_HOT_ANCHOR'
+export const CHANGE_HOT_ANCHOR = 'diRadio/CHANGE_HOT_ANCHOR'
+export const CHANGE_ALL_RADIO_CLASSIFY = 'diRadio/CHANGE_ALL_RADIO_CLASSIFY'
