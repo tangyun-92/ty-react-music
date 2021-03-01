@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-27 23:43:15
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 16:19:46
+ * @Last Modified time: 2021-03-01 16:39:07
  * 歌单内容组件
  */
 import React, { memo } from 'react'
@@ -14,7 +14,7 @@ import TYPagination from '@/components/TYPagination'
 import {
   changeCurrentPageAction,
   getClassifySongsAction,
-} from '@/store/discover/play-list/actionCreators'
+} from './../../store/actionCreators'
 
 export default memo(function PlayListContent() {
   /**

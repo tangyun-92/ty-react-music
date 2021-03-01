@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 15:02:12 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:11:46
+ * @Last Modified time: 2021-03-01 16:41:41
  * 推荐-banner组件
  */
 import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
@@ -10,7 +10,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
 import { Carousel } from 'antd'
 import { BannerWrapper, BannerLeft, BannerRight, BannerControl } from './style'
-import { getTopBanner } from '@/store/discover/recommend/actionCreators'
+import { getTopBanner } from './../../store/actionCreators'
 
 export default memo(function TYTopBanner() {
   /**

@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:31
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:09:47
+ * @Last Modified time: 2021-03-01 16:40:39
  * 入驻歌手
  */
 import React, { memo, useEffect } from 'react'
@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { InSingerWrapper } from './style'
-import { getHotArtistAction } from '@/store/discover/artist/actionCreators'
+import { getHotArtistAction } from '@/pages/discover/artist/store/actionCreators'
 import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function InSinger() {

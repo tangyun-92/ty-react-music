@@ -2,13 +2,13 @@
  * @Author: 唐云
  * @Date: 2021-02-23 09:21:48
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:14:34
+ * @Last Modified time: 2021-03-01 16:44:45
  * 播放列表
  */
 import React, { memo, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { changeIsPlayList } from '@/store/player/actionCreators'
+import { changeIsPlayList } from './../../../store/actionCreators'
 import { PlayListWrapper } from './style'
 import PlayListHeader from './list-header'
 import PlayListSongs from './song-list'

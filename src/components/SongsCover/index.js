@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 21:29:59
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 13:29:40
+ * @Last Modified time: 2021-03-01 16:37:34
  * 歌曲封面组件
  */
 import React, { memo } from 'react'
@@ -12,7 +12,7 @@ import { getCount, getSizeImage } from '@/utils/format-utils.js'
 import {
   getPlayListDetailToPlayListAction,
   changePlayListAction,
-} from '@/store/player/actionCreators'
+} from '@/pages/player/store/actionCreators'
 import { useDispatch } from 'react-redux'
 
 export default memo(function SongsCover(props) {

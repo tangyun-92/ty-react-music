@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-27 23:43:46
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 16:13:38
+ * @Last Modified time: 2021-03-01 16:38:51
  * 歌单头部组件
  */
 import React, { memo, useEffect, useState } from 'react'
@@ -13,7 +13,7 @@ import {
   changeCurrentClassify,
   getClassifySongsAction,
   changeCurrentPageAction,
-} from '@/store/discover/play-list/actionCreators'
+} from './../../store/actionCreators'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 export default memo(function PlayListHeader() {

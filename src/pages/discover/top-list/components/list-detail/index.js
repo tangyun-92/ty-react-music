@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-26 23:17:10
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 23:06:18
+ * @Last Modified time: 2021-03-01 16:42:26
  * 排行榜右侧介绍组件
  */
 import React, { memo } from 'react'
@@ -13,7 +13,7 @@ import { getSizeImage, formatDate } from '@/utils/format-utils'
 import {
   changePlayListAction,
   getPlayListDetailToPlayListAction,
-} from '@/store/player/actionCreators'
+} from '@/pages/player/store/actionCreators'
 
 export default memo(function ListDetail() {
   /**

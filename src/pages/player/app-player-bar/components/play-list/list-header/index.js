@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-23 11:05:54
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:13:14
+ * @Last Modified time: 2021-03-01 16:44:05
  * 播放列表头部组件
  */
 import React, { memo } from 'react'
@@ -13,7 +13,7 @@ import { ListHeaderWrapper } from './style'
 import {
   changeIsPlayList,
   changePlayListAction,
-} from '@/store/player/actionCreators'
+} from './../../../../store/actionCreators'
 import { useDispatch } from 'react-redux'
 
 export default memo(function PlayListHeader() {

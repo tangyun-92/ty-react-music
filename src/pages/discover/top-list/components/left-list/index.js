@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-26 23:17:10
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 23:04:57
+ * @Last Modified time: 2021-03-01 16:42:05
  * 排行榜左侧榜单组件
  */
 import React, { memo, useEffect, useState } from 'react'
@@ -12,7 +12,7 @@ import classNames from 'classnames'
 import {
   getCloudMusicTopListAction,
   getTopDetailAction,
-} from '@/store/discover/top-list/actionCreators'
+} from './../../store/actionCreators'
 import { LeftListWrapper } from './style'
 import { getSizeImage } from '@/utils/format-utils'
 

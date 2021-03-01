@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-27 17:03:45
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 13:26:10
+ * @Last Modified time: 2021-03-01 16:37:18
  * 歌曲列表组件
  */
 import React, { memo } from 'react'
@@ -10,7 +10,7 @@ import React, { memo } from 'react'
 import { SongListWrapper } from './style'
 import { getSizeImage, formatMinuteSecond } from '@/utils/format-utils'
 import { useDispatch } from 'react-redux'
-import { getSongDetailAction } from '@/store/player/actionCreators'
+import { getSongDetailAction } from '@/pages/player/store/actionCreators'
 
 export default memo(function SongList(props) {
   /**

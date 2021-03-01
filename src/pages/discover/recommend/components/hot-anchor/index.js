@@ -2,14 +2,14 @@
  * @Author: 唐云
  * @Date: 2021-02-24 21:44:04
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:07:45
+ * @Last Modified time: 2021-03-01 16:39:48
  * 热门主播
  */
 import React, { memo, useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { HotAnchorWrapper } from './style'
-import { getTopAnchorsAction } from '@/store/discover/dj-radio/actionCreators'
+import { getTopAnchorsAction } from '@/pages/discover/dj-radio/store/actionCreators'
 import { getSizeImage } from '@/utils/format-utils'
 
 export default memo(function HotAnchor() {

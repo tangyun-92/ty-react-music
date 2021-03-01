@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-21 14:34:07
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:15:35
+ * @Last Modified time: 2021-03-01 16:43:13
  * 播放器组件
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
@@ -18,7 +18,7 @@ import {
   changeCurrentSong,
   changeCurrentLyricIndexAction,
   changeIsPlayList
-} from '@/store/player/actionCreators'
+} from './../store/actionCreators'
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils'
 import PlayList from './components/play-list'
 
