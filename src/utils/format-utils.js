@@ -82,3 +82,19 @@ export function formatMinuteSecond(time) {
 export function getPlaySong(id) {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
+
+/**
+ * 对象转数组
+ * @param {*} obj 
+ */
+export function objectToArray(obj) {
+  const arr = []
+  let key = null
+  for (key in obj) {
+    const newObj = {}
+    newObj.value = key
+    newObj.label = obj[key]
+    arr.push(newObj)
+  }
+  return arr
+}
