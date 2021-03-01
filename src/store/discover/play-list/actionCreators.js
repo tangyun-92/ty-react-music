@@ -12,9 +12,14 @@ const changeClassifySongs = (res) => ({
   classifySongs: res,
 })
 
-export const changeCurrentClassify = currentClassify => ({
+export const changeCurrentClassify = (currentClassify) => ({
   type: actionTypes.CHANGE_CURRENT_CLASSIFY,
-  currentClassify
+  currentClassify,
+})
+
+export const changeCurrentPageAction = (currentPage) => ({
+  type: actionTypes.CHANGE_CURRENT_PAGE,
+  currentPage,
 })
 
 /**
@@ -28,7 +33,7 @@ export const getPlayListClassifyAction = () => {
       const categoryData = Object.entries(category).map(([key, value]) => {
         return {
           name: value,
-          subs: []
+          subs: [],
         }
       })
       // 将类别数据添加到数组对应的对象中
@@ -43,12 +48,10 @@ export const getPlayListClassifyAction = () => {
 /**
  * 获取分类下的歌单列表
  */
-export const getClassifySongsAction = () => {
+export const getClassifySongsAction = (page = 35, offset = 1, order) => {
   return (dispatch, getState) => {
-    const order = getState().getIn(['playList', 'currentClassify'])
-    console.log(order)
-    getClassifySongs(35, order).then(res => {
-      console.log(res.playlists)
+    const cat = getState().getIn(['playList', 'currentClassify'])
+    getClassifySongs(cat, page, offset, order).then((res) => {
       dispatch(changeClassifySongs(res))
     })
   }

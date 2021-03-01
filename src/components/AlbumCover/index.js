@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 23:11:07 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:16:01
+ * @Last Modified time: 2021-03-01 13:24:41
  * 专辑封面组件
  */
 import React, { memo } from 'react'

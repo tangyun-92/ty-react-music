@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-20 21:29:59
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-02-27 17:17:20
+ * @Last Modified time: 2021-03-01 13:29:40
  * 歌曲封面组件
  */
 import React, { memo } from 'react'
@@ -19,7 +19,7 @@ export default memo(function SongsCover(props) {
   /**
    * state and props
    */
-  const { info } = props
+  const { info, right, bottom = '20px' } = props
 
   /**
    * redux hooks
@@ -35,9 +35,9 @@ export default memo(function SongsCover(props) {
   }
 
   return (
-    <SongsCoverWrapper>
+    <SongsCoverWrapper right={right} bottom={bottom}>
       <div className="cover-top">
-        <img src={getSizeImage(info.picUrl, 140)} alt="" />
+        <img src={getSizeImage(info.picUrl || info.coverImgUrl, 140)} alt="" />
         <div className="cover sprite_cover">
           <div className="info sprite_cover">
             <span>

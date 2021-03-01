@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-27 23:43:46
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 10:05:15
+ * @Last Modified time: 2021-03-01 16:02:30
  * 歌单头部组件
  */
 import React, { memo, useEffect, useState } from 'react'
@@ -12,6 +12,7 @@ import {
   getPlayListClassifyAction,
   changeCurrentClassify,
   getClassifySongsAction,
+  changeCurrentPageAction,
 } from '@/store/discover/play-list/actionCreators'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
@@ -20,14 +21,16 @@ export default memo(function PlayListHeader() {
    * state and props
    */
   const [showClassify, setShowClassify] = useState(false)
+  const [order, setOrder] = useState('最新')
 
   /**
    * redux hooks
    */
-  const { playListClassify, currentClassify } = useSelector(
+  const { playListClassify, currentClassify, pageSize } = useSelector(
     (state) => ({
       playListClassify: state.getIn(['playList', 'playListClassify']),
       currentClassify: state.getIn(['playList', 'currentClassify']),
+      pageSize: state.getIn(['playList', 'pageSize']),
     }),
     shallowEqual
   )
@@ -48,9 +51,22 @@ export default memo(function PlayListHeader() {
    */
   // 选择分类
   function checkClassify(name) {
+    // 重置为选中第一页
+    dispatch(changeCurrentPageAction(1))
     dispatch(changeCurrentClassify(name))
     dispatch(getClassifySongsAction())
     setShowClassify(false)
+  }
+
+  const changeOrder = (order) => {
+    if (order === '最新') {
+      setOrder('热门')
+      dispatch(getClassifySongsAction(pageSize, 1, 'new'))
+    } else {
+      setOrder('最新')
+      console.log(order)
+      dispatch(getClassifySongsAction(pageSize, 1, 'hot'))
+    }
   }
 
   return (
@@ -67,9 +83,12 @@ export default memo(function PlayListHeader() {
             </i>
           </button>
         </div>
-        <a href="/todo" className="right-btn sprite_button2">
-          热门
-        </a>
+        <span
+          className="right-btn sprite_button2"
+          onClick={(e) => changeOrder(order)}
+        >
+          {order}
+        </span>
       </div>
       {showClassify ? (
         <div className="play-list-dialog">
