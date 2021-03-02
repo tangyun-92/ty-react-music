@@ -6,6 +6,7 @@ const defaultState = Map({
   hotAnchors: [], // 热门主播列表
   allRadioClassify: [], // 所有分类
   hotRadioRanks: [], // 热门电台榜
+  programRanks: [], // 节目排行榜
 })
 
 function reducer(state = defaultState, action) {
@@ -16,6 +17,8 @@ function reducer(state = defaultState, action) {
       return state.set('allRadioClassify', action.allRadioClassify)
     case actionTypes.CHANGE_HOT_RADIO_RANKS:
       return state.set('hotRadioRanks', action.hotRadioRanks)
+    case actionTypes.CHANGE_PROGRAM_RANKS:
+      return state.set('programRanks', action.programRanks)
     default:
       return state
   }

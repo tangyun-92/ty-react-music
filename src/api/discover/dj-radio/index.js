@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-26 21:40:58 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-02 10:06:55
+ * @Last Modified time: 2021-03-02 13:37:23
  * 发现音乐-主播电台
  */
 import request from '@/services/request'
@@ -39,5 +39,17 @@ export function getHotRadioRanks(limit) {
       limit,
       type: 'hot'
     }
+  })
+}
+
+/**
+ * 获取节目排行榜
+ */
+export function getProgramRanks(limit) {
+  return request({
+    url: '/dj/program/toplist',
+    params: {
+      limit,
+    },
   })
 }

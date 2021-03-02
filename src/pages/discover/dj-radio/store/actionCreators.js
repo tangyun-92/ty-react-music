@@ -4,6 +4,7 @@ import {
   getHotAnchors,
   getAllRadioClassify,
   getHotRadioRanks,
+  getProgramRanks
 } from '@/api/discover/dj-radio'
 
 const changeTopAnchorsAction = (hotAnchors) => ({
@@ -19,6 +20,11 @@ const changeAllRadioClassifyAction = (allRadioClassify) => ({
 const changeHotRadioRanksAction = (hotRadioRanks) => ({
   type: actionTypes.CHANGE_HOT_RADIO_RANKS,
   hotRadioRanks,
+})
+
+const changeProgramRanksAction = (programRanks) => ({
+  type: actionTypes.CHANGE_PROGRAM_RANKS,
+  programRanks,
 })
 
 /**
@@ -57,6 +63,18 @@ export const getHotRadioRanksAction = (limit) => {
   return (dispatch) => {
     getHotRadioRanks(limit).then((res) => {
       dispatch(changeHotRadioRanksAction(res.toplist))
+    })
+  }
+}
+
+/**
+ * 节目排行榜
+ * @param {*} limit 
+ */
+export const getProgramRanksAction = (limit) => {
+  return (dispatch) => {
+    getProgramRanks(limit).then(res => {
+      dispatch(changeProgramRanksAction(res.toplist))
     })
   }
 }

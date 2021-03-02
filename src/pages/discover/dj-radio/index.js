@@ -2,7 +2,7 @@
  * @Author: 唐云
  * @Date: 2021-02-19 15:02:21
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-02 10:47:59
+ * @Last Modified time: 2021-03-02 13:42:15
  * 主播电台
  */
 import React, { memo, useEffect } from 'react'
@@ -18,15 +18,19 @@ import {
 } from './style'
 import Classify from './components/classify'
 import DjRadioShow from '@/components/DjRadioShow'
-import { getHotRadioRanksAction } from '@/pages/discover/dj-radio/store/actionCreators'
+import {
+  getHotRadioRanksAction,
+  getProgramRanksAction,
+} from '@/pages/discover/dj-radio/store/actionCreators'
 
 export default memo(function TYDjRadio() {
   /**
    * redux hooks
    */
-  const { hotRadioRanks } = useSelector(
+  const { hotRadioRanks, programRanks } = useSelector(
     (state) => ({
       hotRadioRanks: state.getIn(['djRadio', 'hotRadioRanks']),
+      programRanks: state.getIn(['djRadio', 'programRanks']),
     }),
     shallowEqual
   )
@@ -37,6 +41,7 @@ export default memo(function TYDjRadio() {
    */
   useEffect(() => {
     dispatch(getHotRadioRanksAction(10))
+    dispatch(getProgramRanksAction(10))
   }, [dispatch])
 
   return (
@@ -54,7 +59,11 @@ export default memo(function TYDjRadio() {
             />
           </RecommendShowsWrapper>
           <TopShows>
-            <DjRadioShow title={'节目排行榜'} url={'/discover/dj-radio/rank'} />
+            <DjRadioShow
+              title={'节目排行榜'}
+              url={'/discover/dj-radio/rank'}
+              info={programRanks}
+            />
           </TopShows>
         </div>
         <RadioListWrapper>RadioListWrapper</RadioListWrapper>

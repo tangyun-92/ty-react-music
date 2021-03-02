@@ -62,6 +62,9 @@ export const DjRadioShowWrapper = styled.div`
       }
 
       .right {
+        width: 100px;
+        margin-right: 10px;
+
         .btn {
           margin: 1px 0 0 10px;
           color: #999;

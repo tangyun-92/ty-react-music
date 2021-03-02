@@ -2,10 +2,12 @@
  * @Author: 唐云
  * @Date: 2021-03-01 22:44:54
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-02 10:47:39
+ * @Last Modified time: 2021-03-02 14:03:46
  * 主播电台推荐节目
  */
 import React, { memo } from 'react'
+
+import { Progress } from 'antd'
 
 import { DjRadioShowWrapper } from './style'
 import DjRadioTitle from '@/components/DjRadioTitle'
@@ -23,17 +25,33 @@ export default memo(function DjRadioShow(props) {
       <div className="list">
         {info.map((item, index) => {
           return (
-            <div key={item.id} className="item">
+            <div key={item.rank} className="item">
               <div className="left">
                 <i className="sprite_icon"></i>
-                <img src={getSizeImage(item.picUrl, 40)} alt="" />
+                <img
+                  src={getSizeImage(item.picUrl || item.program.coverUrl, 40)}
+                  alt=""
+                />
               </div>
               <div className="con">
-                <span className="name text-nowrap link">{item.name}</span>
-                <span className="dec text-nowrap link">{item.rcmdtext}</span>
+                <span className="name text-nowrap link">
+                  {item.name || item.program.name}
+                </span>
+                <span className="dec text-nowrap link">
+                  {item.rcmdtext || item.program.radio.name}
+                </span>
               </div>
               <div className="right">
-                <button className="btn">{item.category}</button>
+                {!item.name ? (
+                  <Progress
+                    percent={item.score / info[0].score * 100}
+                    showInfo={false}
+                    status="normal"
+                    strokeColor="#bcbcbc"
+                  />
+                ) : (
+                  <button className="btn">{item.category}</button>
+                )}
               </div>
             </div>
           )
