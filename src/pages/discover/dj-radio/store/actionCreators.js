@@ -4,7 +4,8 @@ import {
   getHotAnchors,
   getAllRadioClassify,
   getHotRadioRanks,
-  getProgramRanks
+  getProgramRanks,
+  getTypeRecommends
 } from '@/api/discover/dj-radio'
 
 const changeTopAnchorsAction = (hotAnchors) => ({
@@ -25,6 +26,36 @@ const changeHotRadioRanksAction = (hotRadioRanks) => ({
 const changeProgramRanksAction = (programRanks) => ({
   type: actionTypes.CHANGE_PROGRAM_RANKS,
   programRanks,
+})
+
+const changeTypeRecommendStoryAction = (res) => ({
+  type: actionTypes.CHANGE_TYPE_RECOMMEND_STORY,
+  typeRecommendStory: res.djRadios,
+})
+
+const changeTypeRecommendSleepingAction = (res) => ({
+  type: actionTypes.CHANGE_TYPE_RECOMMEND_SLEEPING,
+  typeRecommendSleeping: res.djRadios,
+})
+
+const changeTypeRecommendTalkingAction = (res) => ({
+  type: actionTypes.CHANGE_TYPE_RECOMMEND_TALKING,
+  typeRecommendTalking: res.djRadios,
+})
+
+const changeTypeRecommendEmotionalAction = (res) => ({
+  type: actionTypes.CHANGE_TYPE_RECOMMEND_EMOTIONAL,
+  typeRecommendEmotional: res.djRadios,
+})
+
+const changeTypeRecommendCoverAction = (res) => ({
+  type: actionTypes.CHANGE_TYPE_RECOMMEND_COVER,
+  typeRecommendCover: res.djRadios,
+})
+
+const changeTypeRecommendOtherAction = (res) => ({
+  type: actionTypes.CHANGE_TYPE_RECOMMEND_OTHER,
+  typeRecommendOther: res.djRadios,
 })
 
 /**
@@ -75,6 +106,39 @@ export const getProgramRanksAction = (limit) => {
   return (dispatch) => {
     getProgramRanks(limit).then(res => {
       dispatch(changeProgramRanksAction(res.toplist))
+    })
+  }
+}
+
+/**
+ * 分类推荐
+ * @param {*} typeId 类别id 
+ */
+export const getTypeRecommendsAction = (typeId) => {
+  return (dispatch) => {
+    getTypeRecommends(typeId).then((res) => {
+      switch (typeId) {
+        case 2:
+          dispatch(changeTypeRecommendStoryAction(res))
+          break
+        case 6:
+          dispatch(changeTypeRecommendSleepingAction(res))
+          break
+        case 5:
+          dispatch(changeTypeRecommendTalkingAction(res))
+          break
+        case 3:
+          dispatch(changeTypeRecommendEmotionalAction(res))
+          break
+        case 2001:
+          dispatch(changeTypeRecommendCoverAction(res))
+          break
+        case 11:
+          dispatch(changeTypeRecommendOtherAction(res))
+          break
+        default:
+          break
+      }
     })
   }
 }

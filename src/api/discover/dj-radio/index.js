@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-26 21:40:58 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-02 13:37:23
+ * @Last Modified time: 2021-03-02 14:22:38
  * 发现音乐-主播电台
  */
 import request from '@/services/request'
@@ -50,6 +50,18 @@ export function getProgramRanks(limit) {
     url: '/dj/program/toplist',
     params: {
       limit,
+    },
+  })
+}
+
+/**
+ * 电台-分类推荐
+ */
+export function getTypeRecommends(type) {
+  return request({
+    url: '/dj/recommend/type',
+    params: {
+      type,
     },
   })
 }

@@ -4,7 +4,7 @@ export const DjRadioShowWrapper = styled.div`
   width: 426px;
 
   .list {
-    height: 600px;
+    height: 602px;
     border: 1px solid #e2e2e2;
     border-top: none;
 
