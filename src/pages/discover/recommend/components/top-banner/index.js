@@ -2,7 +2,7 @@
  * @Author: 唐云 
  * @Date: 2021-02-20 15:02:12 
  * @Last Modified by: 唐云
- * @Last Modified time: 2021-03-01 16:41:41
+ * @Last Modified time: 2021-04-02 17:05:16
  * 推荐-banner组件
  */
 import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
@@ -29,6 +29,8 @@ export default memo(function TYTopBanner() {
   )
   const dispatch = useDispatch()
 
+  console.log(topBanners)
+
   /**
    * other hooks
    */
@@ -49,6 +51,7 @@ export default memo(function TYTopBanner() {
   const bgImage =
     topBanners[currentIndex] &&
     topBanners[currentIndex].imageUrl + '?imageView&blur=40x20'
+  console.log(bgImage)
 
   return (
     <BannerWrapper bgImage={bgImage}>
